@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,24 +7,37 @@ namespace App.Domain.Entities
 {
     public class Livro
     {
-        public String Titulo { get; set; }
-        public String Autor { get; set; }
-        public String ISBN { get; set; }
+        public int Id { get; set; }
+        public string Titulo { get; set; }
+        public string Autor { get; set; }
+        public string ISBN { get; set; }
         public DateOnly AnoPublicacao { get; set; }
-        public enum Categoria
+        
+        public CategoriaLivro Categoria { get; set; }
+
+        public StatusLivro Status { get; set; }
+
+        public Livro(int id, string titulo, string autor, string isbn, DateOnly anoPublicacao, CategoriaLivro categoria)
         {
-            Ficcao,
-            Romance,
-            Exatas,
-            Historia,
-            Biografia,
-            Tecnologia
-        }
-        public enum Status
-        {
-            Disponivel,
-            Emprestado,
-            Reservado
+            if (id <= 0)
+                throw new ArgumentException("Id deve ser maior que zero.", nameof(id));
+
+            if (string.IsNullOrWhiteSpace(titulo))
+                throw new ArgumentException("Título não pode ser vazio.", nameof(titulo));
+
+            if (string.IsNullOrWhiteSpace(autor))
+                throw new ArgumentException("Autor não pode ser vazio.", nameof(autor));
+
+            if (string.IsNullOrWhiteSpace(isbn))
+                throw new ArgumentException("ISBN não pode ser vazio.", nameof(isbn));
+
+            Id = id;
+            Titulo = titulo;
+            Autor = autor;
+            ISBN = isbn;
+            AnoPublicacao = anoPublicacao;
+            Categoria = categoria;
+            Status = StatusLivro.Disponivel; // Status padrão
         }
 
     }
