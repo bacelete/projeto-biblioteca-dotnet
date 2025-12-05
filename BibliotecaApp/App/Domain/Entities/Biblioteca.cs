@@ -43,5 +43,16 @@ namespace App.Domain.Entities
             }
             return LivroList;
         }
+
+        public static void ExibirInformacoesLivro(Livro livro)
+        {
+            if (!LivroList.Contains(livro))
+            {
+                throw new EntryPointNotFoundException("Livro não encontrado no acervo"); 
+            }
+
+            Console.WriteLine($"Nome: {livro.Titulo} | Autor: {livro.Autor} |" +
+                $" Ano de Publicação: {livro.AnoPublicacao} | Categoria: {livro.Categoria} | ISBN: {livro.ISBN}");
+        }
     }
 }
