@@ -5,20 +5,20 @@ using System.Text;
 
 namespace App.Domain.Services
 {
-    public class LivroService
+    public static class LivroService
     {
-        public void CriarLivro(Livro livro)
+        public static void CriarLivro(Livro livro)
         {
             Biblioteca.AdicionarLivro(livro); 
         }
 
-        public void DeletarLivro(int id)
+        public static void DeletarLivro(int id)
         {
             Livro livro = BuscarLivroPeloId(id);
             Biblioteca.DeletarLivro(livro); 
         }
 
-        public Livro BuscarLivroPeloId(int id)
+        public static Livro BuscarLivroPeloId(int id)
         {
             Livro livro = Biblioteca.BuscarLivro(id);
 
@@ -30,7 +30,7 @@ namespace App.Domain.Services
             return livro; 
         }
 
-        public void AtualizarLivro(int id, Livro novo)
+        public static void AtualizarLivro(int id, Livro novo)
         {
             Livro livro = BuscarLivroPeloId(id);
             Biblioteca.AtualizarLivro(livro, novo);
