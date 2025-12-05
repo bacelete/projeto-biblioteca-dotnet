@@ -11,5 +11,12 @@ namespace App.Domain.Entities
         public string Email { get; set; }
         public List<Emprestimo> EmprestimosAtivos { get; set; }
 
+        public Usuario(int id, string nome, string email)
+        {
+            Id = id; 
+            Nome = nome;
+            Email = email;
+        }
+
     }
 }
