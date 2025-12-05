@@ -6,5 +6,6 @@ namespace App.Domain.Entities
 {
     public class Biblioteca
     {
+        public List<Livro> LivroList { get; set; } = new List<Livro>();
     }
 }
