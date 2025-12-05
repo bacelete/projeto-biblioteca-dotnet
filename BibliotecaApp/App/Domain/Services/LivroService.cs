@@ -9,20 +9,31 @@ namespace App.Domain.Services
     {
         public void CriarLivro(Livro livro)
         {
-            if (livro.Titulo.IsWhiteSpace())
+            Biblioteca.AdicionarLivro(livro); 
+        }
+
+        public void DeletarLivro(int id)
+        {
+            Livro livro = BuscarLivroPeloId(id);
+            Biblioteca.DeletarLivro(livro); 
+        }
+
+        public Livro BuscarLivroPeloId(int id)
+        {
+            Livro livro = Biblioteca.BuscarLivro(id);
+
+            if (livro == null)
             {
-                throw new ArgumentException("Titulo não pode ser vazio");
-            }
-            if (livro.Autor.IsWhiteSpace())
-            {
-                throw new ArgumentException("O livro deve conter um autor."); 
-            }
-            if (livro.AnoPublicacao == null)
-            {
-                throw new ArgumentException("O livro deve possuir um ano de publicação."); 
+                throw new NullReferenceException("Livro não encontrado!"); 
             }
 
-            Biblioteca.AdicionarLivro(livro); 
+            return livro; 
+        }
+
+        public void AtualizarLivro(int id, Livro novo)
+        {
+            Livro livro = BuscarLivroPeloId(id);
+            Biblioteca.AtualizarLivro(livro, novo);
         }
 
 
