@@ -4,8 +4,13 @@ using System.Text;
 
 namespace App.Domain.Entities
 {
-    public class Biblioteca
+    public static class Biblioteca
     {
-        public List<Livro> LivroList { get; set; } = new List<Livro>();
+        private static List<Livro> LivroList { get; set; } = new List<Livro>();
+
+        public static void AdicionarLivro(Livro livro)
+        {
+            LivroList.Add(livro);
+        }
     }
 }
