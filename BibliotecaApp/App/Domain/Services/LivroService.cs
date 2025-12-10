@@ -28,13 +28,17 @@ namespace App.Domain.Services
 
             Livro livro = new Livro(id, titulo, autor, isbn, anoPublicacao, categoria); 
             LivroRepository.AdicionarLivro(livro);
+
+            Console.WriteLine("Livro salvo com sucesso!");
         }
 
 
-        public static void DeletarLivro(Livro livro)
+        public static void DeletarLivro(int Id)
         {
-            Livro livroEncontrado = BuscarLivroPeloId(livro.Id);
+            Livro livroEncontrado = BuscarLivroPeloId(Id);
             LivroRepository.DeletarLivro(livroEncontrado);
+
+            Console.WriteLine("Livro deletado com sucesso!");
         }
 
         public static void AtualizarLivro(int id, Livro novo)
@@ -45,11 +49,13 @@ namespace App.Domain.Services
             livroExistente.Autor = novo.Autor;
             livroExistente.AnoPublicacao = novo.AnoPublicacao;
             livroExistente.Categoria = novo.Categoria;
+
+            Console.WriteLine("Livro atualizado com sucesso!");
         }
 
-        public static void ExibirInformacoesLivro(Livro livro)
+        public static void ExibirInformacoesLivro(int Id)
         {
-            Livro livroEncontrado = BuscarLivroPeloId(livro.Id);
+            Livro livroEncontrado = BuscarLivroPeloId(Id);
 
             Console.WriteLine($"Nome: {livroEncontrado.Titulo} | Autor: {livroEncontrado.Autor} |" +
                 $" Ano de Publicação: {livroEncontrado.AnoPublicacao} | Categoria: {livroEncontrado.Categoria} | ISBN: {livroEncontrado.ISBN}");

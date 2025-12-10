@@ -7,11 +7,11 @@ namespace App.Domain.Repository
 {
     public class LivroRepository
     {
-        public static Livro BuscarLivroPeloId(int id)
+        public static Livro BuscarLivroPeloId(int Id)
         {
             foreach (var livro in Biblioteca.LivroList)
             {
-                if (livro.Id == id)
+                if (livro.Id == Id)
                 {
                     return livro;
                 }
