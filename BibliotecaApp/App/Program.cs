@@ -9,8 +9,12 @@ public class Program
     {
         Livro livro = new Livro
             (1, "Engenharia de Software Moderna", "Marco Túlio Valente", "CSJ45B", DateOnly.Parse("2025-12-05"), CategoriaLivro.Ciencia);
+        Usuario usuario = new Usuario("Arthur", "arthurbt2005@gmail.com"); 
 
+        UsuarioService.CriarUsuario(usuario);
         BibliotecaService.AdicionarLivro(livro);
-        BibliotecaService.ExibirInformacoesLivro(livro);
+        EmprestimoService.EmprestarLivro(livro, usuario); 
+        
+        
     }
 }

@@ -7,7 +7,7 @@ namespace App.Domain.Services
 {
     public class EmprestimoService
     {
-        public void EmprestarLivro(Livro livro, Usuario usuario)
+        public static void EmprestarLivro(Livro livro, Usuario usuario)
         {
             if (IsEmprestimoAtivo(livro))
             {
@@ -20,7 +20,7 @@ namespace App.Domain.Services
             HistoricoEmprestimo.AdicionarEmprestimo(emprestimo);
         }
 
-        private bool IsEmprestimoAtivo(Livro livro)
+        private static bool IsEmprestimoAtivo(Livro livro)
         {
             List<Emprestimo> emprestimos = HistoricoEmprestimo.emprestimos;
 

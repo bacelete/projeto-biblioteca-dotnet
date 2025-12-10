@@ -16,7 +16,7 @@ public class UsuarioService
         Biblioteca.UsuarioList.Add(usuario); 
     }
 
-    public static bool isUserAlreadyCreated(string email)
+    private static bool isUserAlreadyCreated(string email)
     {
         List<Usuario> usuarios = BuscarTodosOsUsuarios(); 
 
