@@ -7,8 +7,11 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        LivroService.AdicionarLivro(
-            1, "Engenharia de Software Moderna", "Marco Túlio Valente", "CSJ45B", DateOnly.Parse("2025-12-05"), CategoriaLivro.Ciencia);
+        LivroService service = new LivroService();
+
+
+        service.AdicionarLivro(
+            "1", "Engenharia de Software Moderna", "Marco Tulio Valente", "CSJ45B", DateOnly.Parse("2025-12-05"), CategoriaLivro.Ciencia);
 
     }
 }

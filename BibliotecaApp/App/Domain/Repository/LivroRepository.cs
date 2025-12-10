@@ -21,5 +21,10 @@ namespace App.Domain.Repository
             repLivro.SalvarDados(livro);
         }
 
+        public Livro BuscarLivroPeloId(string id)
+        {
+            return repLivro.Carregar(id);
+        }
+
     }
 }

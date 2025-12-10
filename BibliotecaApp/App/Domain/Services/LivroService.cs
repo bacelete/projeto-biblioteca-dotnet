@@ -37,5 +37,17 @@ namespace App.Domain.Services
 
         }
 
+        public Livro BuscarLivroPeloId(string id)
+        {
+            Livro livroEncontrado = livroRepository.BuscarLivroPeloId(id); 
+
+            if (livroEncontrado == null)
+            {
+                throw new NullReferenceException("Livro não encontrado no acervo");
+            }
+
+            return livroEncontrado;
+        }
+
     }
 }
