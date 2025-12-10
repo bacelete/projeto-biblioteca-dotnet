@@ -16,6 +16,18 @@ namespace App.Domain.Services
             livroRepository = new LivroRepository();
         }
 
+        public void DeletarLivroPeloId(string id)
+        {
+            Livro livro = BuscarLivroPeloId(id); 
+
+            if (livro == null)
+            {
+                throw new NullReferenceException("Livro não encontrado no acervo."); 
+            }
+
+            livroRepository.DeletarLivro(livro);
+        }
+
         public void AdicionarLivro(
             string id, string titulo, string autor, string isbn, DateOnly anoPublicacao, CategoriaLivro categoria)
         {
@@ -33,8 +45,18 @@ namespace App.Domain.Services
                 throw new ArgumentException("ISBN não pode ser vazio.", nameof(isbn));
 
             Livro livro = new Livro(id, titulo, autor, isbn, anoPublicacao, categoria);
-            livroRepository.AdicionarLivro(livro);
 
+            if (IsLivroAlreadyCreated(id))
+            {
+                throw new Exception($"Livro de ID {id} já foi cadastrado no acervo");
+            }
+
+            livroRepository.AdicionarLivro(livro);
+        }
+
+        private bool IsLivroAlreadyCreated(string id)
+        {
+            return livroRepository.isLivroAlreadyCreated(id);
         }
 
         public Livro BuscarLivroPeloId(string id)

@@ -23,7 +23,17 @@ namespace App.Domain.Repository
 
         public Livro BuscarLivroPeloId(string id)
         {
-            return repLivro.Carregar(id);
+           return repLivro.Carregar(id);
+        }
+
+        public bool isLivroAlreadyCreated(string id)
+        {
+            return repLivro.IsObjAlreadyCreated(id);
+        }
+
+        public void DeletarLivro(Livro livro)
+        {
+            repLivro.Deletar(livro);
         }
 
     }

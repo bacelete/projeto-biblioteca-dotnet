@@ -23,11 +23,6 @@ namespace App.Domain.Utils
 
         public void SalvarDados(T obj)
         {
-            if (obj == null)
-            {
-                throw new Exception("Objeto nulo.");
-            }
-
             var items = CarregarTodos();
             items.Add(obj);
 
@@ -51,6 +46,23 @@ namespace App.Domain.Utils
         {
             var itens = CarregarTodos(); 
             return itens.FirstOrDefault(item => item.ObterChave() == id);
+        }
+
+        public bool IsObjAlreadyCreated(string id)
+        {
+            T obj = Carregar(id);
+            return obj != null; 
+        }
+
+        public void Deletar(T obj)
+        {
+            var itens = CarregarTodos(); 
+
+            if (itens.Contains(obj))
+            {
+                itens.Remove(obj);
+                SalvarTodos(itens);
+            }
         }
 
         public List<T> CarregarTodos()

@@ -12,7 +12,8 @@ public class Program
 
         service.AdicionarLivro(
             "1", "Engenharia de Software Moderna", "Marco Tulio Valente", "CSJ45B", DateOnly.Parse("2025-12-05"), CategoriaLivro.Ciencia);
-        Livro livro = service.BuscarLivroPeloId("1");
-        Console.WriteLine(livro.ToString());
+
+        service.AdicionarLivro("1", "teste", "teste", "CSJ55B", DateOnly.Parse("2025-12-05"), CategoriaLivro.Acao);
+
     }
 }

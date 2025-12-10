@@ -9,7 +9,11 @@ namespace App.Domain.Utils
     {
         void SalvarDados(T obj); 
         void SalvarTodos(List<T> obj);
+
+        void Deletar(T obj); 
         T? Carregar(string id);
         List<T> CarregarTodos();
+
+        bool IsObjAlreadyCreated(string id);
     }
 }
