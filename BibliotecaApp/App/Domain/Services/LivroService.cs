@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using App.Domain.Services;
 
 namespace App.Domain.Services
 {
@@ -9,18 +10,18 @@ namespace App.Domain.Services
     {
         public static void CriarLivro(Livro livro)
         {
-            Biblioteca.AdicionarLivro(livro); 
+            BibliotecaService.AdicionarLivro(livro); 
         }
 
         public static void DeletarLivro(int id)
         {
             Livro livro = BuscarLivroPeloId(id);
-            Biblioteca.DeletarLivro(livro); 
+            BibliotecaService.DeletarLivro(livro); 
         }
 
         public static Livro BuscarLivroPeloId(int id)
         {
-            Livro livro = Biblioteca.BuscarLivro(id);
+            Livro livro = BibliotecaService.BuscarLivro(id);
 
             if (livro == null)
             {
@@ -33,7 +34,7 @@ namespace App.Domain.Services
         public static void AtualizarLivro(int id, Livro novo)
         {
             Livro livro = BuscarLivroPeloId(id);
-            Biblioteca.AtualizarLivro(livro, novo);
+            BibliotecaService.AtualizarLivro(livro, novo);
         }
 
 
