@@ -29,7 +29,7 @@ namespace App.Domain.Repository
         public static void AdicionarLivro(Livro livro)
         {
             Biblioteca.LivroList.Add(livro);
-            FileSave.SalvarDadosNoArquivo(Biblioteca.LivroList);
+            JsonRepository.SalvarDadosNoArquivo(Biblioteca.LivroList);
         }
 
         public static void DeletarLivro(Livro livro)
