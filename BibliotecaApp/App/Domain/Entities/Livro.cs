@@ -38,7 +38,7 @@ namespace App.Domain.Entities
             AnoPublicacao = anoPublicacao;
             Categoria = categoria;
             Status = StatusLivro.Disponivel; // Status padrão
-        }
+        } 
 
     }
 }

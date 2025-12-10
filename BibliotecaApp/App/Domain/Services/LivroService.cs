@@ -37,6 +37,16 @@ namespace App.Domain.Services
             BibliotecaService.AtualizarLivro(livro, novo);
         }
 
+        public static List<Livro> BuscarTodosOsLivros()
+        {
+            return BibliotecaService.BuscarTodosOsLivros(); 
+        }
+
+        public static void ExibirInformacoesLivro(Livro livro)
+        {
+            BibliotecaService.ExibirInformacoesLivro(livro);
+        }
+
 
     }
 }

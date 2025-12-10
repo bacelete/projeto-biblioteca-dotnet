@@ -17,22 +17,10 @@ namespace App.Domain.Services
             Emprestimo emprestimo = new Emprestimo(Guid.NewGuid(), livro.Id, usuario.Id, DateOnly.Parse("2025-12-05"));
 
             usuario.EmprestimosAtivos.Add(emprestimo);    
-            HistoricoEmprestimo.AdicionarEmprestimo(emprestimo);
         }
 
         private static bool IsEmprestimoAtivo(Livro livro)
         {
-            List<Emprestimo> emprestimos = HistoricoEmprestimo.emprestimos;
-
-            foreach (Emprestimo emp in emprestimos)
-            {
-                Livro livroEncontrado = LivroService.BuscarLivroPeloId(emp.IdLivro);
-                if (livroEncontrado.Equals(livro))
-                {
-                    return true;
-                }
-
-            }
             return false;
         }
     }

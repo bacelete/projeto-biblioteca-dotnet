@@ -6,14 +6,14 @@ namespace App.Domain.Entities
 {
     public class Usuario
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }
         public List<Emprestimo> EmprestimosAtivos { get; set; }
 
-        public Usuario(string nome, string email)
+        public Usuario(int id, string nome, string email)
         {
-            Id = Guid.NewGuid(); 
+            Id = id; 
             Nome = nome;
             Email = email;
         }

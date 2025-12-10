@@ -7,8 +7,8 @@ namespace App.Domain.Entities
     public class HistoricoEmprestimo
     {
         public Guid id;
-        public Guid idUsuario;
-        public Guid idEmprestimo; 
+        public Guid idEmprestimo;
+        public int idUsuario;
 
     }
 }
