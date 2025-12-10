@@ -19,18 +19,6 @@ namespace App.Domain.Entities
 
         public Livro(int id, string titulo, string autor, string isbn, DateOnly anoPublicacao, CategoriaLivro categoria)
         {
-            if (id <= 0)
-                throw new ArgumentException("Id deve ser maior que zero.", nameof(id));
-
-            if (string.IsNullOrWhiteSpace(titulo))
-                throw new ArgumentException("Título não pode ser vazio.", nameof(titulo));
-
-            if (string.IsNullOrWhiteSpace(autor))
-                throw new ArgumentException("Autor não pode ser vazio.", nameof(autor));
-
-            if (string.IsNullOrWhiteSpace(isbn))
-                throw new ArgumentException("ISBN não pode ser vazio.", nameof(isbn));
-
             Id = id;
             Titulo = titulo;
             Autor = autor;
