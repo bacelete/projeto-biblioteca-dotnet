@@ -11,7 +11,7 @@ namespace App.Domain.Utils
         private readonly string _caminhoArquivo;
         private readonly JsonSerializerOptions _opcoes; 
 
-        public RepositoryJSON(string caminhoArquivo, JsonSerializerOptions opcoes)
+        public RepositoryJSON(string caminhoArquivo)
         { 
             _caminhoArquivo = caminhoArquivo;
             _opcoes = new JsonSerializerOptions

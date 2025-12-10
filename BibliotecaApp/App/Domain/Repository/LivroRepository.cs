@@ -9,34 +9,17 @@ namespace App.Domain.Repository
 {
     public class LivroRepository
     {
-        public static Livro BuscarLivroPeloId(int Id)
+        private readonly RepositoryJSON<Livro> repLivro; 
+
+        public LivroRepository()
         {
-            foreach (var livro in Biblioteca.LivroList)
-            {
-                if (livro.Id == Id)
-                {
-                    return livro;
-                }
-            }
-            return null;
+            repLivro = new RepositoryJSON<Livro>("livros.json"); 
         }
 
-        public static List<Livro> BuscarTodosOsLivros()
+        public void AdicionarLivro(Livro livro)
         {
-            return Biblioteca.LivroList;
+            repLivro.SalvarDados(livro);
         }
-
-        public static void AdicionarLivro(Livro livro)
-        {
-            Biblioteca.LivroList.Add(livro);
-            JsonRepository.SalvarDadosNoArquivo(Biblioteca.LivroList);
-        }
-
-        public static void DeletarLivro(Livro livro)
-        {
-            Biblioteca.LivroList.Remove(livro);
-        }
-
 
     }
 }
