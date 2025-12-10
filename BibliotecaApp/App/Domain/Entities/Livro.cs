@@ -29,6 +29,11 @@ namespace App.Domain.Entities
             Status = StatusLivro.Disponivel; // Status padrão
         } 
 
+        public override string ToString()
+        {
+            return "ID: " + Id + "| Titulo: " + Titulo + "| Autor: " + Autor + "| ISBN: " + ISBN + "| Data: " + AnoPublicacao;
+        }
+
         public string ObterChave()
         {
             return Id;

@@ -25,5 +25,14 @@
     "AnoPublicacao": "2025-12-05",
     "Categoria": 2,
     "Status": 0
+  },
+  {
+    "Id": "1",
+    "Titulo": "Engenharia de Software Moderna",
+    "Autor": "Marco Tulio Valente",
+    "ISBN": "CSJ45B",
+    "AnoPublicacao": "2025-12-05",
+    "Categoria": 2,
+    "Status": 0
   }
 ]
