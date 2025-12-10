@@ -29,7 +29,6 @@ namespace App.Domain.Services
             Livro livro = new Livro(id, titulo, autor, isbn, anoPublicacao, categoria); 
             LivroRepository.AdicionarLivro(livro);
 
-            Console.WriteLine("Livro salvo com sucesso!");
         }
 
 

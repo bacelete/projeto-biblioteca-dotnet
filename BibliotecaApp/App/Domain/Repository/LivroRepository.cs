@@ -1,7 +1,9 @@
 ﻿using App.Domain.Entities;
+using App.Domain.Utils;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 
 namespace App.Domain.Repository
 {
@@ -26,7 +28,8 @@ namespace App.Domain.Repository
 
         public static void AdicionarLivro(Livro livro)
         {
-            Biblioteca.LivroList.Add(livro); 
+            Biblioteca.LivroList.Add(livro);
+            FileSave.SalvarDadosNoArquivo(Biblioteca.LivroList);
         }
 
         public static void DeletarLivro(Livro livro)
