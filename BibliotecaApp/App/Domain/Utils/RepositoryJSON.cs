@@ -23,6 +23,11 @@ namespace App.Domain.Utils
 
         public void SalvarDados(T obj)
         {
+            if (IsObjAlreadyCreated(obj.ObterChave()))
+            {
+                throw new Exception("Já existe um objeto salvo no arquivo");
+            }
+
             var items = CarregarTodos();
             items.Add(obj);
 

@@ -29,7 +29,7 @@ namespace App.Domain.Services
         }
 
         public void AdicionarLivro(
-            string id, string titulo, string autor, string isbn, DateOnly anoPublicacao, CategoriaLivro categoria)
+            string id, string titulo, string autor, string isbn, string data, CategoriaLivro categoria)
         {
 
             if (id.IsWhiteSpace())
@@ -44,7 +44,7 @@ namespace App.Domain.Services
             if (string.IsNullOrWhiteSpace(isbn))
                 throw new ArgumentException("ISBN não pode ser vazio.", nameof(isbn));
 
-            Livro livro = new Livro(id, titulo, autor, isbn, anoPublicacao, categoria);
+            Livro livro = new Livro(id, titulo, autor, isbn, DateOnly.Parse(data), categoria);
 
             if (IsLivroAlreadyCreated(id))
             {
