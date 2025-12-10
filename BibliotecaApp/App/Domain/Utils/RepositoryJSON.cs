@@ -6,13 +6,13 @@ using System.Text.Json;
 
 namespace App.Domain.Utils
 {
-    public class RepositoryJSON<T> : IRepository<T>
+    public class RepositoryJSON<T> : IRepository<T> where T : ISalvavel
     {
         private readonly string _caminhoArquivo;
         private readonly JsonSerializerOptions _opcoes; 
 
         public RepositoryJSON(string caminhoArquivo, JsonSerializerOptions opcoes)
-        {
+        { 
             _caminhoArquivo = caminhoArquivo;
             _opcoes = new JsonSerializerOptions
             {
@@ -25,10 +25,13 @@ namespace App.Domain.Utils
         {
             if (obj == null)
             {
-                throw new Exception("Objeto nulo."); 
+                throw new Exception("Objeto nulo.");
             }
-            var list = obj as List<T>;
-            SalvarTodos(list);
+
+            var items = CarregarTodos();
+            items.Add(obj);
+
+            SalvarTodos(items);
         }
 
         public void SalvarTodos(List<T> obj)
@@ -44,9 +47,10 @@ namespace App.Domain.Utils
             }
         }
 
-        public T Carregar(int id)
+        public T Carregar(string id)
         {
-            
+            var itens = CarregarTodos(); 
+            return itens.FirstOrDefault(item => item.ObterChave() == id);
         }
 
         public List<T> CarregarTodos()
@@ -58,6 +62,7 @@ namespace App.Domain.Utils
             }
             catch (Exception e)
             {
+                Console.WriteLine($"Erro ao carregar os dados do arquivo {_caminhoArquivo}: {e.Message}"); 
                 return new List<T>(); 
             }
         }

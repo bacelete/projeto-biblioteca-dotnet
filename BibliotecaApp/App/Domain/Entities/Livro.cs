@@ -1,13 +1,14 @@
 ﻿using App.Domain.Enums;
+using App.Domain.Utils;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace App.Domain.Entities
 {
-    public class Livro
+    public class Livro : ISalvavel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Titulo { get; set; }
         public string Autor { get; set; }
         public string ISBN { get; set; }
@@ -17,7 +18,7 @@ namespace App.Domain.Entities
 
         public StatusLivro Status { get; set; }
 
-        public Livro(int id, string titulo, string autor, string isbn, DateOnly anoPublicacao, CategoriaLivro categoria)
+        public Livro(string id, string titulo, string autor, string isbn, DateOnly anoPublicacao, CategoriaLivro categoria)
         {
             Id = id;
             Titulo = titulo;
@@ -27,6 +28,11 @@ namespace App.Domain.Entities
             Categoria = categoria;
             Status = StatusLivro.Disponivel; // Status padrão
         } 
+
+        public string ObterChave()
+        {
+            return Id;
+        }
 
     }
 }
