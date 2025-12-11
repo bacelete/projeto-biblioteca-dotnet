@@ -15,5 +15,7 @@ namespace App.Domain.Utils
         List<T> CarregarTodos();
 
         bool IsObjAlreadyCreated(string id);
+
+        T AtualizarObjeto(string id, T obj); 
     }
 }

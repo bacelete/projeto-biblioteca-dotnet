@@ -8,11 +8,8 @@ public class Program
     public static void Main(string[] args)
     {
         LivroService service = new LivroService();
-
-
-        service.AdicionarLivro(
-            "1", "Engenharia de Software Moderna", "Marco Tulio Valente", "CSJ45B", "2025-12-10", CategoriaLivro.Ciencia);
-
-
+        service.CadastrarLivro("1", "Engenharia de Software Modera", "Marco Tulio Valente", "CSJ4BN", "2023-12-10", CategoriaLivro.Ciencia);
+        Livro novo = new Livro("1", "oi", "oi", "oi", "2025-12-11", CategoriaLivro.Ciencia);
+        service.AtualizarLivro("1", novo); 
     }
 }

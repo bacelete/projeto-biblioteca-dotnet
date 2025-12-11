@@ -14,20 +14,31 @@ namespace App.Domain.Entities
         public string ISBN { get; set; }
         public DateOnly AnoPublicacao { get; set; }
         
-        public CategoriaLivro Categoria { get; set; }
+        public string Categoria { get; set; }
 
-        public StatusLivro Status { get; set; }
+        public string Status { get; set; }
 
-        public Livro(string id, string titulo, string autor, string isbn, DateOnly anoPublicacao, CategoriaLivro categoria)
+        public Livro() { }
+        public Livro(string id, string titulo, string autor, string isbn, string anoPublicacao, CategoriaLivro categoria)
         {
             Id = id;
             Titulo = titulo;
             Autor = autor;
             ISBN = isbn;
-            AnoPublicacao = anoPublicacao;
-            Categoria = categoria;
-            Status = StatusLivro.Disponivel; // Status padrão
-        } 
+            AnoPublicacao = DateOnly.Parse(anoPublicacao); 
+            Categoria = categoria.ToString();
+            Status = StatusLivro.Disponivel.ToString(); // Status padrão
+        }
+
+        public Livro(string titulo, string autor, string isbn, string anoPublicacao, CategoriaLivro categoria)
+        {
+            Titulo = titulo;
+            Autor = autor;
+            ISBN = isbn;
+            AnoPublicacao = DateOnly.Parse(anoPublicacao);
+            Categoria = categoria.ToString();
+            Status = StatusLivro.Disponivel.ToString(); // Status padrão
+        }
 
         public override string ToString()
         {

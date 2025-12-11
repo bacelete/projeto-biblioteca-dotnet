@@ -16,9 +16,14 @@ namespace App.Domain.Repository
             repLivro = new RepositoryJSON<Livro>("livros.json"); 
         }
 
-        public void AdicionarLivro(Livro livro)
+        public void SalvarLivro(Livro livro)
         {
             repLivro.SalvarDados(livro);
+        }
+
+        public Livro AtualizarLivro(string id, Livro novo)
+        {
+            return repLivro.AtualizarObjeto(id, novo);
         }
 
         public Livro BuscarLivroPeloId(string id)

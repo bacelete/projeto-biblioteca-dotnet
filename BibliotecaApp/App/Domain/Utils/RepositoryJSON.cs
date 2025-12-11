@@ -23,11 +23,6 @@ namespace App.Domain.Utils
 
         public void SalvarDados(T obj)
         {
-            if (IsObjAlreadyCreated(obj.ObterChave()))
-            {
-                throw new Exception("Já existe um objeto salvo no arquivo");
-            }
-
             var items = CarregarTodos();
             items.Add(obj);
 
@@ -51,6 +46,15 @@ namespace App.Domain.Utils
         {
             var itens = CarregarTodos(); 
             return itens.FirstOrDefault(item => item.ObterChave() == id);
+        }
+
+        public T AtualizarObjeto(string id, T novo) {
+            var itens = CarregarTodos();
+            int index = itens.FindIndex((i) => (i.ObterChave() == id));
+            itens[index] = novo;
+
+            SalvarTodos(itens);
+            return itens[index];
         }
 
         public bool IsObjAlreadyCreated(string id)
