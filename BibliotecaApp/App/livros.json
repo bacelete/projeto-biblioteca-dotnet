@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "Id": "1",
+    "Titulo": "Engenharia de Software Modera",
+    "Autor": "Marco Tulio Valente",
+    "ISBN": "CSJ4BN",
+    "AnoPublicacao": "2023-12-10",
+    "Categoria": "Ciencia",
+    "Status": "Disponivel"
+  }
+]

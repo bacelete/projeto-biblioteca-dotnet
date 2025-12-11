@@ -38,6 +38,7 @@ namespace App.Domain.Services
             }
 
             Emprestimo emprestimo = new Emprestimo(idLivro, idUsuario, DateOnly.FromDateTime(DateTime.Now));
+            usuarioService.RegistrarEmprestimo(idUsuario, emprestimo);
             emprestimoRepository.SalvarEmprestimo(emprestimo);
         }
     }
