@@ -7,5 +7,10 @@ namespace App.Domain.Services;
 
 public class UsuarioService
 {
+    private readonly UsuarioRepository usuarioRepository;
 
+    public UsuarioService()
+    {
+        usuarioRepository = new UsuarioRepository(); 
+    }
 }

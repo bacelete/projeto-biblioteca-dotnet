@@ -8,24 +8,17 @@ namespace App.Domain.Entities
     public class Emprestimo : ISalvavel
     {
         public string Id { get; set; } = Guid.NewGuid().ToString();
-        public int IdLivro { get; set; }
-        public int IdUsuario { get; set; }
+        public string IdLivro { get; set; }
+        public string IdUsuario { get; set; }
         public DateOnly DataEmprestimo { get; set; }
         public DateOnly DataDevolucao { get; set; }
 
-        public Emprestimo(int idLivro, int idUsuario, DateOnly dataEmprestimo, DateOnly dataDevolucao)
+        public Emprestimo(string idLivro, string idUsuario, DateOnly dataEmprestimo)
         {
             IdLivro = idLivro;
             IdUsuario = idUsuario;
             DataEmprestimo = dataEmprestimo;
-            DataDevolucao = dataDevolucao;
-        }
-
-        public Emprestimo(int idLivro, int idUsuario, DateOnly dataEmprestimo)
-        {
-            IdLivro = idLivro;
-            IdUsuario = idUsuario;
-            DataEmprestimo = dataEmprestimo; 
+            DataDevolucao = dataEmprestimo.AddDays(7); 
         }
 
         public string ObterChave()
