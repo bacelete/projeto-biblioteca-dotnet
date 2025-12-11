@@ -25,7 +25,7 @@ namespace App.Domain.Services
                 throw new NullReferenceException("Livro não encontrado no acervo."); 
             }
 
-            livroRepository.DeletarLivro(livro);
+            livroRepository.DeletarLivro(id);
         }
 
         public Livro AtualizarLivro(string id, Livro novo)

@@ -50,8 +50,12 @@ namespace App.Domain.Utils
 
         public T AtualizarObjeto(string id, T novo) {
             var itens = CarregarTodos();
-            int index = itens.FindIndex((i) => (i.ObterChave() == id));
-            itens[index] = novo;
+            int index = EncontrarIndiceObjetoNaLista(itens, id); 
+
+            if (index != -1)
+            {
+                itens[index] = novo;
+            }
 
             SalvarTodos(itens);
             return itens[index];
@@ -63,15 +67,22 @@ namespace App.Domain.Utils
             return obj != null; 
         }
 
-        public void Deletar(T obj)
+        private int EncontrarIndiceObjetoNaLista(List<T> itens, string id)
         {
-            var itens = CarregarTodos(); 
+            return itens.FindIndex((i) => (i.ObterChave() == id)); 
+        }
 
-            if (itens.Contains(obj))
+        public void Deletar(string id)
+        {
+            var itens = CarregarTodos();
+            int index = EncontrarIndiceObjetoNaLista(itens, id); 
+
+            if (index != -1)
             {
-                itens.Remove(obj);
-                SalvarTodos(itens);
+                itens.RemoveAt(index);
             }
+
+            SalvarTodos(itens); 
         }
 
         public List<T> CarregarTodos()

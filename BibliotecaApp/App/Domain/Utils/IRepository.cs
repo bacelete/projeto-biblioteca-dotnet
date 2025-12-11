@@ -10,7 +10,7 @@ namespace App.Domain.Utils
         void SalvarDados(T obj); 
         void SalvarTodos(List<T> obj);
 
-        void Deletar(T obj); 
+        void Deletar(string id); 
         T? Carregar(string id);
         List<T> CarregarTodos();
 

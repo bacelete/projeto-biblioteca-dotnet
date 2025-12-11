@@ -36,9 +36,9 @@ namespace App.Domain.Repository
             return repLivro.IsObjAlreadyCreated(id);
         }
 
-        public void DeletarLivro(Livro livro)
+        public void DeletarLivro(string id)
         {
-            repLivro.Deletar(livro);
+            repLivro.Deletar(id);
         }
 
     }
