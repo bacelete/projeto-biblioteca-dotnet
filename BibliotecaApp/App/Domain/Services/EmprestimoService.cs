@@ -3,6 +3,7 @@ using App.Domain.Enums;
 using App.Domain.Repository;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 
 namespace App.Domain.Services
@@ -44,22 +45,60 @@ namespace App.Domain.Services
             emprestimoRepository.SalvarEmprestimo(emprestimo);
         }
 
-        public List<Emprestimo> BuscarEmprestimosDoUsuario(Usuario usuario)
+        private Emprestimo BuscarEmprestimoPeloIdLivro(string idLivro)
         {
-            Usuario UsuarioEncontrado = usuarioService.BuscarUsuarioPeloEmail(usuario.Email);
+            List<Emprestimo> emprestimos = emprestimoRepository.BuscarTodos();
+            Emprestimo emprestimo = new Emprestimo(); 
 
-            if (UsuarioEncontrado == null)
+            emprestimos.ForEach(emp =>
             {
-                throw new NullReferenceException($"Usuário {usuario.Email} não esta acadastrado");
+                if (emp.IdLivro == idLivro)
+                {
+                    emprestimo = emp;  
+                }
+            });
+
+            return emprestimo;
+        }
+
+        public Emprestimo BuscarEmprestimo(string idEmprestimo)
+        {
+            Emprestimo emprestimo = emprestimoRepository.BuscarEmprestimo(idEmprestimo);
+            if (emprestimo == null)
+            {
+                throw new NullReferenceException($"Emprestimo de ID {idEmprestimo} não encontrado."); 
+            }
+            return emprestimo; 
+        }
+
+        public void AtualizarEmprestimo(String idEmprestimo, Emprestimo novo)
+        {
+            emprestimoRepository.AtualizarEmprestimo(idEmprestimo, novo);
+        }
+
+        public void DevolverLivro(string idLivro)
+        {
+            Livro livro = livroService.BuscarLivroPeloId(idLivro); 
+
+            if (livro == null)
+            {
+                throw new NullReferenceException($"Livro {livro.Titulo} não está cadastrado.");
             }
 
-            List<Emprestimo> EmprestimosUsuario = usuario.EmprestimosAtivos;
+            Emprestimo emprestimo = BuscarEmprestimoPeloIdLivro(idLivro);
 
-            if (EmprestimosUsuario == null)
+            if (emprestimo == null)
             {
-                throw new NullReferenceException("Usuario não possui emprestimos ativos");
+                throw new NullReferenceException($"Não ha emprestimo associado ao livro {livro.Titulo}");
             }
-            return EmprestimosUsuario;
+
+            Usuario usuario = usuarioService.BuscarUsuarioPeloId(emprestimo.IdUsuario); 
+
+            usuario.EmprestimosAtivos.Remove(emprestimo);
+            emprestimo.DataDevolucao = DateOnly.FromDateTime(DateTime.UtcNow);
+
+            livro.Status = StatusLivro.Disponivel.ToString();
+            livroService.AtualizarLivro(livro.Id, livro);
         }
     }
     }

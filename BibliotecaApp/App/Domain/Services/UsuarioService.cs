@@ -20,12 +20,12 @@ public class UsuarioService
         usuarioRepository.CadastrarUsuario(usuario);
     }
 
-    public Usuario BuscarUsuarioPeloEmail(string email)
+    public Usuario BuscarUsuarioPeloId(string id)
     {
-        Usuario usuario = usuarioRepository.BuscarUsuario(email);
+        Usuario usuario = usuarioRepository.BuscarUsuario(id);
         if (usuario == null)
         {
-            throw new NullReferenceException($"Usuario {email} não está cadastrado no sistema."); 
+            throw new NullReferenceException($"Usuario não está cadastrado no sistema."); 
         }
         return usuario; 
     }

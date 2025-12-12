@@ -18,10 +18,26 @@ namespace App.Domain.Repository
             repEmprestimo.SalvarDados(emprestimo);
         }
 
-        public Emprestimo BuscarEmprestimo(string idLivro)
+        public List<Emprestimo> BuscarTodos()
         {
-            return repEmprestimo.BuscarPelaChave(idLivro);
+            return repEmprestimo.BuscarTodos();
         }
+
+        public List<Emprestimo> BuscarEmprestimoPeloIdLivro(Func<Emprestimo, bool> criterio)
+        {
+            return repEmprestimo.Buscar(criterio); 
+        }
+
+        public Emprestimo BuscarEmprestimo(string idEmprestimo)
+        {
+            return repEmprestimo.BuscarPelaChave(idEmprestimo);
+        }
+
+        public Emprestimo AtualizarEmprestimo(string idEmprestimo, Emprestimo novo)
+        {
+            return repEmprestimo.AtualizarObjeto(idEmprestimo, novo);
+        }
+
 
     }
 }

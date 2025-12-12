@@ -11,22 +11,6 @@ namespace App.Domain.Utils
         private readonly string _caminhoArquivo;
         private readonly JsonSerializerOptions _opcoes; 
 
-
-        public List<T> Buscar(Func<T, bool> criterio)
-        {
-            var itens = BuscarTodos();
-            List<T> encontrados = new List<T>();
-
-            foreach (var item in itens)
-            {
-                if (criterio(item))
-                {
-                    encontrados.Add(item);
-                }
-            }
-            return encontrados; 
-        }
-
         public RepositoryJSON(string nomeArquivo)
         {
             var docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -39,6 +23,20 @@ namespace App.Domain.Utils
                 WriteIndented = true,
                 PropertyNameCaseInsensitive = true,
             };
+        }
+        public List<T> Buscar(Func<T, bool> criterio)
+        {
+            var itens = BuscarTodos();
+            List<T> encontrados = new List<T>();
+
+            foreach (var item in itens)
+            {
+                if (criterio(item))
+                {
+                    encontrados.Add(item);
+                }
+            }
+            return encontrados;
         }
 
         public void SalvarDados(T obj)
