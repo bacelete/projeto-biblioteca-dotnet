@@ -28,7 +28,7 @@ namespace App.Domain.Repository
 
         public Livro BuscarLivroPeloId(string id)
         {
-           return repLivro.Carregar(id);
+           return repLivro.BuscarPelaChave(id);
         }
 
         public bool isLivroAlreadyCreated(string id)

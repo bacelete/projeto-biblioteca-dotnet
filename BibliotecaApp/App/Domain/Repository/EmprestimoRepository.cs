@@ -18,5 +18,10 @@ namespace App.Domain.Repository
             repEmprestimo.SalvarDados(emprestimo);
         }
 
+        public Emprestimo BuscarEmprestimo(string idLivro)
+        {
+            return repEmprestimo.BuscarPelaChave(idLivro);
+        }
+
     }
 }

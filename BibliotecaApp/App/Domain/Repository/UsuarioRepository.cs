@@ -27,7 +27,7 @@ namespace App.Domain.Repository
 
         public Usuario BuscarUsuario(string email)
         {
-            return repUsuario.Carregar(email);
+            return repUsuario.BuscarPelaChave(email);
         }
 
     }

@@ -25,7 +25,7 @@ namespace App.Domain.Services
 
             if (livro == null)
             {
-                throw new NullReferenceException($"Livro de ID {idLivro} não está cadastrado no sistema"); 
+                throw new NullReferenceException($"Livro de ID {idLivro} não está cadastrado no sistema");
             }
             if (usuario == null)
             {
@@ -33,12 +33,34 @@ namespace App.Domain.Services
             }
             if (livro.Status != StatusLivro.Disponivel.ToString())
             {
-                throw new ArgumentException($"Livro {livro.Titulo} não está disponível para emprestimo."); 
+                throw new ArgumentException($"Livro {livro.Titulo} não está disponível para emprestimo.");
             }
 
             Emprestimo emprestimo = new Emprestimo(idLivro, usuario.Id, DateOnly.FromDateTime(DateTime.Now));
+            livro.Status = StatusLivro.Emprestado.ToString();
+
+            livroService.AtualizarLivro(idLivro, livro);
             usuarioService.RegistrarEmprestimo(usuario, emprestimo);
             emprestimoRepository.SalvarEmprestimo(emprestimo);
         }
+
+        public List<Emprestimo> BuscarEmprestimosDoUsuario(Usuario usuario)
+        {
+            Usuario UsuarioEncontrado = usuarioService.BuscarUsuarioPeloEmail(usuario.Email);
+
+            if (UsuarioEncontrado == null)
+            {
+                throw new NullReferenceException($"Usuário {usuario.Email} não esta acadastrado");
+            }
+
+            List<Emprestimo> EmprestimosUsuario = usuario.EmprestimosAtivos;
+
+            if (EmprestimosUsuario == null)
+            {
+                throw new NullReferenceException("Usuario não possui emprestimos ativos");
+            }
+            return EmprestimosUsuario;
+        }
     }
-}
+    }
+

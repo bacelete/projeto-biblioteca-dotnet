@@ -11,11 +11,13 @@ namespace App.Domain.Utils
         void SalvarTodos(List<T> obj);
 
         void Deletar(string id); 
-        T? Carregar(string id);
-        List<T> CarregarTodos();
+        T? BuscarPelaChave(string id);
+        List<T> BuscarTodos();
 
         bool IsObjAlreadyCreated(string id);
 
-        T AtualizarObjeto(string id, T obj); 
+        T AtualizarObjeto(string id, T obj);
+
+        List<T> Buscar(Func<T, bool> criterio);
     }
 }

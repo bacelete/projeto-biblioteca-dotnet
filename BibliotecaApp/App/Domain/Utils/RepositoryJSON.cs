@@ -11,6 +11,22 @@ namespace App.Domain.Utils
         private readonly string _caminhoArquivo;
         private readonly JsonSerializerOptions _opcoes; 
 
+
+        public List<T> Buscar(Func<T, bool> criterio)
+        {
+            var itens = BuscarTodos();
+            List<T> encontrados = new List<T>();
+
+            foreach (var item in itens)
+            {
+                if (criterio(item))
+                {
+                    encontrados.Add(item);
+                }
+            }
+            return encontrados; 
+        }
+
         public RepositoryJSON(string nomeArquivo)
         {
             var docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -27,7 +43,7 @@ namespace App.Domain.Utils
 
         public void SalvarDados(T obj)
         {
-            var items = CarregarTodos();
+            var items = BuscarTodos();
             items.Add(obj);
 
             SalvarTodos(items);
@@ -46,14 +62,14 @@ namespace App.Domain.Utils
             }
         }
 
-        public T Carregar(string id)
+        public T BuscarPelaChave(string id)
         {
-            var itens = CarregarTodos(); 
+            var itens = BuscarTodos(); 
             return itens.FirstOrDefault(item => item.ObterChave() == id);
         }
 
         public T AtualizarObjeto(string id, T novo) {
-            var itens = CarregarTodos();
+            var itens = BuscarTodos();
             int index = EncontrarIndiceObjetoNaLista(itens, id); 
 
             if (index != -1)
@@ -67,7 +83,7 @@ namespace App.Domain.Utils
 
         public bool IsObjAlreadyCreated(string id)
         {
-            T obj = Carregar(id);
+            T obj = BuscarPelaChave(id);
             return obj != null; 
         }
 
@@ -78,7 +94,7 @@ namespace App.Domain.Utils
 
         public void Deletar(string id)
         {
-            var itens = CarregarTodos();
+            var itens = BuscarTodos();
             int index = EncontrarIndiceObjetoNaLista(itens, id); 
 
             if (index != -1)
@@ -89,7 +105,7 @@ namespace App.Domain.Utils
             SalvarTodos(itens); 
         }
 
-        public List<T> CarregarTodos()
+        public List<T> BuscarTodos()
         {
             try
             {
