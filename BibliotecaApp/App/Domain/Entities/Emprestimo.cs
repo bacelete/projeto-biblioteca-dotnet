@@ -13,6 +13,8 @@ namespace App.Domain.Entities
         public DateOnly DataEmprestimo { get; set; }
         public DateOnly DataDevolucao { get; set; }
 
+        public Emprestimo() { 
+        }
         public Emprestimo(string idLivro, string idUsuario, DateOnly dataEmprestimo)
         {
             IdLivro = idLivro;

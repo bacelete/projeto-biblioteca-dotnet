@@ -11,9 +11,13 @@ namespace App.Domain.Utils
         private readonly string _caminhoArquivo;
         private readonly JsonSerializerOptions _opcoes; 
 
-        public RepositoryJSON(string caminhoArquivo)
-        { 
-            _caminhoArquivo = caminhoArquivo;
+        public RepositoryJSON(string nomeArquivo)
+        {
+            var docPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            var myDir = Path.Combine(docPath, "dados");
+            Directory.CreateDirectory(myDir);
+
+            _caminhoArquivo = Path.Combine(myDir, nomeArquivo);
             _opcoes = new JsonSerializerOptions
             {
                 WriteIndented = true,

@@ -10,7 +10,7 @@ namespace App.Domain.Entities
         public string Id { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }
-        public List<Emprestimo> EmprestimosAtivos { get; set; }
+        public List<Emprestimo> EmprestimosAtivos { get; set; } = new List<Emprestimo>();
 
         public Usuario() { }
         public Usuario(string id, string nome, string email)
@@ -22,7 +22,7 @@ namespace App.Domain.Entities
 
         public string ObterChave()
         {
-            return Id;
+            return Email;
         }
     }
 }

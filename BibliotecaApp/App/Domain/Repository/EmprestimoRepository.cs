@@ -9,8 +9,8 @@ namespace App.Domain.Repository
     public class EmprestimoRepository
     {
         private readonly RepositoryJSON<Emprestimo> repEmprestimo;
-        public EmprestimoRepository() { 
-            repEmprestimo = new RepositoryJSON<Emprestimo>("emprestimo.json");
+        public EmprestimoRepository() {
+            repEmprestimo = new RepositoryJSON<Emprestimo>("emprestimos.json");
         }
 
         public void SalvarEmprestimo(Emprestimo emprestimo)

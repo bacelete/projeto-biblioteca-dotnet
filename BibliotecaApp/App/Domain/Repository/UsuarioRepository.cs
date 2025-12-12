@@ -17,12 +17,17 @@ namespace App.Domain.Repository
 
         public void CadastrarUsuario(Usuario usuario)
         {
+            if (BuscarUsuario(usuario.Email) != null)
+            {
+                throw new NullReferenceException($"E-mail {usuario.Email} já está cadastrado no sistema."); 
+            }
+
             repUsuario.SalvarDados(usuario);
         }
 
-        public Usuario BuscarUsuario(string id)
+        public Usuario BuscarUsuario(string email)
         {
-            return repUsuario.Carregar(id);
+            return repUsuario.Carregar(email);
         }
 
     }

@@ -20,19 +20,18 @@ public class UsuarioService
         usuarioRepository.CadastrarUsuario(usuario);
     }
 
-    public Usuario BuscarUsuarioPeloId(string id)
+    public Usuario BuscarUsuarioPeloEmail(string email)
     {
-        Usuario usuario = usuarioRepository.BuscarUsuario(id);
+        Usuario usuario = usuarioRepository.BuscarUsuario(email);
         if (usuario == null)
         {
-            throw new NullReferenceException($"Usuario {id} não está cadastrado no sistema."); 
+            throw new NullReferenceException($"Usuario {email} não está cadastrado no sistema."); 
         }
         return usuario; 
     }
 
-    public void RegistrarEmprestimo(string id, Emprestimo emprestimo)
+    public void RegistrarEmprestimo(Usuario usuario, Emprestimo emprestimo)
     {
-        Usuario usuario = BuscarUsuarioPeloId(id); 
         usuario.EmprestimosAtivos.Add(emprestimo);
     }
 }

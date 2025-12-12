@@ -11,11 +11,11 @@ public class Program
         UsuarioService usuarioService = new UsuarioService();
         EmprestimoService emprestimoService = new EmprestimoService();
 
-        Livro livro = new Livro("1", "Engenharia de Software Modera", "Marco Tulio Valente", "CSJ4BN", "2023-12-10", CategoriaLivro.Ciencia);
-        Usuario usuario = new Usuario("1", "Arthur", "arthurbt2005@gmail.com");
-        
+        Livro livro = new Livro("2", "Codigo Limpo", "Robert J. Bowler", "CSJ4BN", "2023-12-10", CategoriaLivro.Ciencia);
+        Usuario usuario = new Usuario("2", "Admin", "admin@gmail.com");
         usuarioService.CadastrarUsuario(usuario);
-        livroService.CadastrarLivro(livro);
-        emprestimoService.CadastrarEmprestimo("1", "1"); 
+        livroService.CadastrarLivro(livro); 
+        emprestimoService.CadastrarEmprestimo("2", "admin@gmail.com");
+
     }
 }
