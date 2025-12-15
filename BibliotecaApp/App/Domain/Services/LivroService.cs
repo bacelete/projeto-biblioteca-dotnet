@@ -4,6 +4,7 @@ using App.Domain.Repository;
 using App.Domain.Services;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 
 namespace App.Domain.Services
@@ -69,6 +70,26 @@ namespace App.Domain.Services
                 .OrderBy(l => l.Titulo);
 
             return livrosDisponiveis;
+        }
+
+        public IEnumerable<Livro> BuscarLivroPorTitulo(string titulo)
+        {
+            List<Livro> livros = livroRepository.BuscarTodos();
+
+            var livrosEncontrados = livros
+                .Where(l => l.Titulo == titulo);
+
+            return livrosEncontrados; 
+        }
+
+        public IEnumerable<Livro> BuscarLivroPorAutor(string autor)
+        {
+            List<Livro> livros = livroRepository.BuscarTodos(); 
+
+            var livrosEncontrados = livros
+                .Where(l => l.Autor == autor);
+
+            return livrosEncontrados;
         }
 
     }
