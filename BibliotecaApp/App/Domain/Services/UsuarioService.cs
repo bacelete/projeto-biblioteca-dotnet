@@ -30,8 +30,14 @@ public class UsuarioService
         return usuario; 
     }
 
+    public Usuario AtualizarUsuario(string idUsuario, Usuario novo)
+    {
+        return usuarioRepository.AtualizarUsuario(idUsuario, novo);
+    }
+
     public void RegistrarEmprestimo(Usuario usuario, Emprestimo emprestimo)
     {
         usuario.EmprestimosAtivos.Add(emprestimo);
+        AtualizarUsuario(usuario.Id, usuario); 
     }
 }

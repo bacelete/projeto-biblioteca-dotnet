@@ -22,7 +22,7 @@ namespace App.Domain.Entities
 
         public string ObterChave()
         {
-            return Email;
+            return Id;
         }
     }
 }

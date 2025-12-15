@@ -16,7 +16,7 @@ public class Program
 
         usuarioService.CadastrarUsuario(usuario);
         livroService.CadastrarLivro(livro); 
-        emprestimoService.CadastrarEmprestimo("1", "admin@gmail.com");
+        emprestimoService.CadastrarEmprestimo("1", "1");
 
     }
 }

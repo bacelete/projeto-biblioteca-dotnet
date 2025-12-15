@@ -15,6 +15,11 @@ namespace App.Domain.Repository
             repUsuario = new RepositoryJSON<Usuario>("usuarios.json"); 
         }
 
+        public Usuario AtualizarUsuario(string idUsuario, Usuario novo)
+        {
+            return repUsuario.AtualizarObjeto(idUsuario, novo);
+        }
+
         public void CadastrarUsuario(Usuario usuario)
         {
             if (BuscarUsuario(usuario.Email) != null)
@@ -25,9 +30,9 @@ namespace App.Domain.Repository
             repUsuario.SalvarDados(usuario);
         }
 
-        public Usuario BuscarUsuario(string email)
+        public Usuario BuscarUsuario(string id)
         {
-            return repUsuario.BuscarPelaChave(email);
+            return repUsuario.BuscarPelaChave(id);
         }
 
     }

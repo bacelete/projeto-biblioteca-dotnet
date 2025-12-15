@@ -19,10 +19,10 @@ namespace App.Domain.Services
             emprestimoRepository = new EmprestimoRepository();
         }
 
-        public void CadastrarEmprestimo(string idLivro, string email)
+        public void CadastrarEmprestimo(string idLivro, string idUsuario)
         {
             Livro livro = livroService.BuscarLivroPeloId(idLivro);
-            Usuario usuario = usuarioService.BuscarUsuarioPeloEmail(email);
+            Usuario usuario = usuarioService.BuscarUsuarioPeloId(idUsuario);
 
             if (livro == null)
             {
@@ -30,7 +30,7 @@ namespace App.Domain.Services
             }
             if (usuario == null)
             {
-                throw new NullReferenceException($"E-mail {email} não está cadastrado no sistema");
+                throw new NullReferenceException($"Usuário de ID {idUsuario} não está cadastrado no sistema");
             }
             if (livro.Status != StatusLivro.Disponivel.ToString())
             {
