@@ -96,9 +96,10 @@ namespace App.Domain.Services
 
             usuario.EmprestimosAtivos.Remove(emprestimo);
             emprestimo.DataDevolucao = DateOnly.FromDateTime(DateTime.UtcNow);
-
             livro.Status = StatusLivro.Disponivel.ToString();
+
             livroService.AtualizarLivro(livro.Id, livro);
+            AtualizarEmprestimo(emprestimo.Id, emprestimo); 
         }
     }
     }

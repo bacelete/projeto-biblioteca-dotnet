@@ -60,5 +60,16 @@ namespace App.Domain.Services
             return livroEncontrado;
         }
 
+        public IEnumerable<Livro> BuscarLivrosDisponiveis()
+        {
+            List<Livro> livros = livroRepository.BuscarTodos();
+
+            var livrosDisponiveis = livros.
+                Where(l => l.Status.Equals(StatusLivro.Disponivel.ToString()))
+                .OrderBy(l => l.Titulo);
+
+            return livrosDisponiveis;
+        }
+
     }
 }

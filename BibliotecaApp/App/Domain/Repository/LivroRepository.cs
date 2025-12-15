@@ -41,5 +41,10 @@ namespace App.Domain.Repository
             repLivro.Deletar(id);
         }
 
+        public List<Livro> BuscarTodos()
+        {
+            return repLivro.BuscarTodos(); 
+        }
+
     }
 }
